@@ -138,3 +138,5 @@ EMAIL_HOST_PASSWORD = "yerw lmsy wacx ahrk"
 
 RAZORPAY_API_KEY='rzp_test_WjBFwkukFo9SDv'
 RAZORPAY_API_SECRET_KEY='hidHvnMwCzrwe3IAecKh1MPB'
+
+ALLOWED_HOSTS=["localhost","192.168.0.121","127.0.0.1"]

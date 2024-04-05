@@ -321,8 +321,8 @@ def checkoutPage(Request):
                     "displayAmount":checkout.total,
                     "api_key":settings.RAZORPAY_API_KEY,
                     "order_id":paymentId,
-                    "User":buyer
-                    "id":-1
+                    "User":buyer,
+                    "id":checkout.id
                 })
         return render(Request,"checkout.html",{'buyer':buyer,'subtotal':subtotal,'shipping':shipping,'total':total,'cart':cart})
     except:
@@ -345,18 +345,15 @@ def rePaymentPage(Request,id):
             "displayAmount":checkout.total,
             "api_key":settings.RAZORPAY_API_KEY,
             "order_id":paymentId,
-            "User":buyer
+            "User":buyer,
             "id":id
         })
     except:
         return HttpResponseRedirect("/profile/")
     
 @login_required(login_url='/login/')
-def paymentSuccessPage(request,rppid,rpoid,rpsid):
-    buyer = Buyer.objects.get(username=request.user)
-    check = Checkout.objects.filter(user=buyer)
-    check=check[::-1]
-    check=check[0]
+def paymentSuccessPage(request,id,rppid,rpoid,rpsid):
+    check = Checkout.objects.get(id=id)
     check.rppid=rppid
     check.paymentstatus=1
     check.save()

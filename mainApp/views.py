@@ -160,7 +160,7 @@ def searchPage(Request):
 
 def singleProductPage(Request,id):
     product=Product.objects.get(id=id)
-    return render(Request,"single-Product.html",{'product':product})
+    return render(Request,"single-product.html",{'product':product})
 
 
 def loginPage(Request):
